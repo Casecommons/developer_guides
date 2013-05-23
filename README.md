@@ -26,50 +26,35 @@ email, get consensus from the team and then add it to this guide.
 
 ## Source Code Layout
 
-> Nearly everybody is convinced that every style but their own is
-> ugly and unreadable. Leave out the "but their own" and they're
-> probably right... <br/>
-> -- Jerry Coffin (on indentation)
-
 * Use `UTF-8` as the source file encoding.
 * Use two **spaces** per indentation level. No hard tabs.
+* Keep lines fewer than **80** characters.
+* Never leaving trailing whitespace.
+
+* Use spaces around operators, after commas, colons and semicolons, around `{`
+  and before `}`.
 
     ```Ruby
-    # bad - four spaces
-    def some_method
-        do_something
-    end
-
-    # good
-    def some_method
-      do_something
-    end
+    sum = 1 + 2
+    a, b = 1, 2
+    1 > 2 ? true : false; puts 'Hi'
+    [1, 2, 3].each { |e| puts e }
     ```
 
-* Use Unix-style line endings. (*BSD/Solaris/Linux/OSX users are covered by default,
-  Windows users have to be extra careful.)
-    * If you're using Git you might want to add the following
-    configuration setting to protect your project from Windows line
-    endings creeping in:
-
-        $ git config --global core.autocrlf true
-
-* Don't use `;` to separate statements and expressions. As a
-  corollary - use one expression per line.
+    The only exception, regarding operators, is the exponent operator:
 
     ```Ruby
     # bad
-    puts 'foobar'; # superfluous semicolon
-
-    puts 'foo'; puts 'bar' # two expression on the same line
+    e = M * c ** 2
 
     # good
-    puts 'foobar'
+    e = M * c**2
+    ```
+* No spaces after `(`, `[` or before `]`, `)`.
 
-    puts 'foo'
-    puts 'bar'
-
-    puts 'foo', 'bar' # this applies to puts in particular
+    ```Ruby
+    some(arg).other
+    [1, 2, 3].length
     ```
 
 * Prefer a single-line format for class definitions with no body.
@@ -114,68 +99,6 @@ email, get consensus from the team and then add it to this guide.
     def no_op; end
     ```
 
-* Use spaces around operators, after commas, colons and semicolons, around `{`
-  and before `}`. Whitespace might be (mostly) irrelevant to the Ruby
-  interpreter, but its proper use is the key to writing easily
-  readable code.
-
-    ```Ruby
-    sum = 1 + 2
-    a, b = 1, 2
-    1 > 2 ? true : false; puts 'Hi'
-    [1, 2, 3].each { |e| puts e }
-    ```
-
-    The only exception, regarding operators, is the exponent operator:
-
-    ```Ruby
-    # bad
-    e = M * c ** 2
-
-    # good
-    e = M * c**2
-    ```
-
-    `{` and `}` deserve a bit of clarification, since they are used
-    for block and hash literals, as well as embedded expressions in
-    strings. For hash literals two styles are considered acceptable.
-
-    ```Ruby
-    # good - space after { and before }
-    { one: 1, two: 2 }
-
-    # good - no space after { and before }
-    {one: 1, two: 2}
-    ```
-
-    The first variant is slightly more readable (and arguably more
-    popular in the Ruby community in general). The second variant has
-    the advantage of adding visual difference between block and hash
-    literals. Whichever one you pick - apply it consistently.
-
-    As far as embedded expressions go, there are also two acceptable
-    options:
-
-    ```Ruby
-    # good - no spaces
-    "string#{expr}"
-
-    # ok - arguably more readable
-    "string#{ expr }"
-    ```
-
-    The first style is extremely more popular and you're generally
-    advised to stick with it. The second, on the other hand, is
-    (arguably) a bit more readable. As with hashes - pick one style
-    and apply it consistently.
-
-* No spaces after `(`, `[` or before `]`, `)`.
-
-    ```Ruby
-    some(arg).other
-    [1, 2, 3].length
-    ```
-
 * Indent `when` as deep as `case`. I know that many would disagree
   with this one, but it's the style established in both "The Ruby
   Programming Language" and "Programming Ruby".
@@ -202,22 +125,6 @@ email, get consensus from the team and then add it to this guide.
            end
     ```
 
-* Use empty lines between `def`s and to break up a method into logical
-  paragraphs.
-
-    ```Ruby
-    def some_method
-      data = initialize(options)
-
-      data.manipulate!
-
-      data.result
-    end
-
-    def some_method
-      result
-    end
-    ```
 
 * Use spaces around the `=` operator when assigning default values to method parameters:
 
@@ -236,20 +143,8 @@ email, get consensus from the team and then add it to this guide.
     While several Ruby books suggest the first style, the second is much more prominent
     in practice (and arguably a bit more readable).
 
-* Avoid line continuation `\` where not required. In practice, avoid using
-  line continuations at all.
-
-    ```Ruby
-    # bad
-    result = 1 - \
-             2
-
-    # good (but still ugly as hell)
-    result = 1 \
-             - 2
-    ```
-
 * When continuing a chained method invocation on another line keep the `.` on the second line.
+And indent 2 spaces on the second line
 
     ```Ruby
     # bad - need to consult first line to understand second line
@@ -304,25 +199,6 @@ email, get consensus from the team and then add it to this guide.
 
     # good - much easier to parse for the human brain
     num = 1_000_000
-    ```
-
-* Use RDoc and its conventions for API documentation.  Don't put an
-  empty line between the comment block and the `def`.
-* Limit lines to 80 characters.
-* Avoid trailing whitespace.
-* Don't use block comments. They cannot be preceded by whitespace and are not
-as easy to spot as regular comments.
-
-    ```Ruby
-    # bad
-    == begin
-    comment line
-    another comment line
-    == end
-
-    # good
-    # comment line
-    # another comment line
     ```
 
 ## Syntax
