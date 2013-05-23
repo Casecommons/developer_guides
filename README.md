@@ -642,12 +642,6 @@ would happen if the current value happened to be `false`.)
 
 ## Comments
 
-> Good code is its own best documentation. As you're about to add a
-> comment, ask yourself, "How can I improve the code so that this
-> comment isn't needed?" Improve the code and then document it to make
-> it even clearer. <br/>
-> -- Steve McConnell
-
 * Write self-documenting code and ignore the rest of this section. Seriously!
 * Write comments in English.
 * Use one space between the leading `#` character of the comment and the text
@@ -686,17 +680,6 @@ at all.
       baz(:quux)
     end
     ```
-
-* In cases where the problem is so obvious that any documentation would
-  be redundant, annotations may be left at the end of the offending line
-  with no note. This usage should be the exception and not the rule.
-
-    ```Ruby
-    def bar
-      sleep 100 # OPTIMIZE
-    end
-    ```
-
 * Use `TODO` to note missing features or functionality that should be
   added at a later date.
 * Use `FIXME` to note broken code that needs to be fixed.
@@ -707,8 +690,6 @@ at all.
 * Use `REVIEW` to note anything that should be looked at to confirm it
   is working as intended. For example: `REVIEW: Are we sure this is how the
   client does X currently?`
-* Use other custom annotation keywords if it feels appropriate, but be
-  sure to document them in your project's `README` or similar.
 
 ## Classes & Modules
 
