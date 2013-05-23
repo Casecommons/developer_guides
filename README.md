@@ -1184,7 +1184,5 @@ on this guide.
 
 # Contributing
 
-Nothing written in this guide is set in stone. It's my desire to work
-together with everyone interested in Ruby coding style, so that we could
-ultimately create a resource that will be beneficial to the entire Ruby
-community.
+Nothing written in this guide is set in stone. If you disagree or want to add to it
+please bring it up during standup or send an email with your rule/justification.
