@@ -22,8 +22,6 @@ email, get consensus from the team and then add it to this guide.
 * [Regular Expressions](#regular-expressions)
 * [Percent Literals](#percent-literals)
 * [Metaprogramming](#metaprogramming)
-* [Misc](#misc)
-* [Tools](#tools)
 
 ## Source Code Layout
 
@@ -1163,24 +1161,6 @@ Apply this rule only to arrays with two or more elements.
 
     # best of all, though, would to define_method as each findable attribute is declared
     ```
-
-## Tools
-
-Here's some tools to help you automatically check Ruby code against
-this guide.
-
-### RuboCop
-
-[RuboCop](https://github.com/bbatsov/rubocop) is a Ruby code style
-checker based on this style guide. RuboCop already covers a
-significant portion of the Guide, supports both MRI 1.9 and MRI 2.0
-and has good Emacs integration.
-
-### RubyMine
-
-[RubyMine](http://www.jetbrains.com/ruby/)'s code inspections are
-[partially based](http://confluence.jetbrains.com/display/RUBYDEV/RubyMine+Inspections)
-on this guide.
 
 # Contributing
 
