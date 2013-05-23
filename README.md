@@ -2,10 +2,12 @@
 
 This guide is a modified version of https://github.com/bbatsov/ruby-style-guide.
 
-The guide is a work in progress and the developers working on Casecommon's projects 
-should follow the guidelines unless there is a compelling reason not to. If you don't 
-like a rule or want to add a new rule, please bring it up during standup or via group 
-email, get consensus from the team and then add it to this guide.
+The guide is a work in progress and a couple of things to note 
+as we try and move towards using these guidelines:
+  * Be consistent
+  * Don't rewrite legacy code, unless you are working in that area
+  * If you don't like a rule or want to add a new rule, please bring it up during 
+standup or via group email, get consensus from the team and then add it to this guide.
 
 ## Table of Contents
 
