@@ -14,7 +14,7 @@ email, get consensus from the team and then add it to this guide.
 * [Naming](#naming)
 * [Comments](#comments)
     * [Comment Annotations](#comment-annotations)
-* [Classes](#classes--modules)
+* [Classes](#classes)
 * [Exceptions](#exceptions)
 * [Collections](#collections)
 * [Strings](#strings)
@@ -691,7 +691,7 @@ at all.
   is working as intended. For example: `REVIEW: Are we sure this is how the
   client does X currently?`
 
-## Classes & Modules
+## Classes
 
 * Use a consistent structure in your class definitions.
 
