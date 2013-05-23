@@ -823,105 +823,6 @@ everything `public` (which is the default).
 
 ## Exceptions
 
-* Signal exceptions using the `fail` method. Use `raise` only when
-  catching an exception and re-raising it (because here you're not
-  failing, but explicitly and purposefully raising an exception).
-
-    ```Ruby
-    begin
-      fail 'Oops';
-    rescue => error
-      raise if error.message != 'Oops'
-    end
-    ```
-
-* Never return from an `ensure` block. If you explicitly return from a
-  method inside an `ensure` block, the return will take precedence over
-  any exception being raised, and the method will return as if no
-  exception had been raised at all. In effect, the exception will be
-  silently thrown away.
-
-    ```Ruby
-    def foo
-      begin
-        fail
-      ensure
-        return 'very bad idea'
-      end
-    end
-    ```
-
-* Use *implicit begin blocks* where possible.
-
-    ```Ruby
-    # bad
-    def foo
-      begin
-        # main logic goes here
-      rescue
-        # failure handling goes here
-      end
-    end
-
-    # good
-    def foo
-      # main logic goes here
-    rescue
-      # failure handling goes here
-    end
-    ```
-
-* Mitigate the proliferation of `begin` blocks by using
-  *contingency methods* (a term coined by Avdi Grimm).
-
-    ```Ruby
-    # bad
-    begin
-      something_that_might_fail
-    rescue IOError
-      # handle IOError
-    end
-
-    begin
-      something_else_that_might_fail
-    rescue IOError
-      # handle IOError
-    end
-
-    # good
-    def with_io_error_handling
-       yield
-    rescue IOError
-      # handle IOError
-    end
-
-    with_io_error_handling { something_that_might_fail }
-
-    with_io_error_handling { something_else_that_might_fail }
-    ```
-
-* Don't suppress exceptions.
-
-    ```Ruby
-    # bad
-    begin
-      # an exception occurs here
-    rescue SomeError
-      # the rescue clause does absolutely nothing
-    end
-
-    # bad
-    do_something rescue nil
-    ```
-
-* Avoid using `rescue` in its modifier form.
-
-    ```Ruby
-    # bad - this catches all StandardError exceptions
-    do_something rescue nil
-    ```
-
-
 * Don't use exceptions for flow of control.
 
     ```Ruby
@@ -971,41 +872,45 @@ everything `public` (which is the default).
 
     ```
 
-* Put more specific exceptions higher up the rescue chain, otherwise
-  they'll never be rescued from.
+* Use *implicit begin blocks* where possible.
+
+    ```Ruby
+    # bad
+    def foo
+      begin
+        # main logic goes here
+      rescue
+        # failure handling goes here
+      end
+    end
+
+    # good
+    def foo
+      # main logic goes here
+    rescue
+      # failure handling goes here
+    end
+    ```
+
+* Don't suppress exceptions.
 
     ```Ruby
     # bad
     begin
-      # some code
-    rescue Exception => e
-      # some handling
-    rescue StandardError => e
-      # some handling
+      # an exception occurs here
+    rescue SomeError
+      # the rescue clause does absolutely nothing
     end
 
-    # good
-    begin
-      # some code
-    rescue StandardError => e
-      # some handling
-    rescue Exception => e
-      # some handling
-    end
+    # bad
+    do_something rescue nil
     ```
 
-* Release external resources obtained by your program in an ensure
-block.
+* Avoid using `rescue` in its modifier form.
 
     ```Ruby
-    f = File.open('testfile')
-    begin
-      # .. process
-    rescue
-      # .. handle error
-    ensure
-      f.close unless f.nil?
-    end
+    # bad - this catches all StandardError exceptions
+    do_something rescue nil
     ```
 
 * Favor the use of exceptions for the standard library over
