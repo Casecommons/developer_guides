@@ -998,37 +998,6 @@ Apply this rule only to arrays with two or more elements.
     name = 'Bozhidar'
     ```
 
-* Don't leave out `{}` around instance and global variables being
-  interpolated into a string.
-
-    ```Ruby
-    class Person
-      attr_reader :first_name, :last_name
-
-      def initialize(first_name, last_name)
-        @first_name = first_name
-        @last_name = last_name
-      end
-
-      # bad - valid, but awkward
-      def to_s
-        "#@first_name #@last_name"
-      end
-
-      # good
-      def to_s
-        "#{@first_name} #{@last_name}"
-      end
-    end
-
-    $global = 0
-    # bad
-    puts "$global = #$global"
-
-    # good
-    puts "$global = #{$global}"
-    ```
-
 * Avoid using `String#+` when you need to construct large data chunks.
   Instead, use `String#<<`. Concatenation mutates the string instance in-place
   and is always faster than `String#+`, which creates a bunch of new string objects.
@@ -1044,27 +1013,6 @@ Apply this rule only to arrays with two or more elements.
     ```
 
 ## Regular Expressions
-
-> Some people, when confronted with a problem, think
-> "I know, I'll use regular expressions." Now they have two problems.<br/>
-> -- Jamie Zawinski
-
-* Don't use regular expressions if you just need plain text search in string:
-  `string['text']`
-* For simple constructions you can use regexp directly through string index.
-
-    ```Ruby
-    match = string[/regexp/]             # get content of matched regexp
-    first_group = string[/text(grp)/, 1] # get content of captured group
-    string[/text (grp)/, 1] = 'replace'  # string => 'text replace'
-    ```
-
-* Use non-capturing groups when you don't use captured result of parentheses.
-
-    ```Ruby
-    /(first|second)/   # bad
-    /(?:first|second)/ # good
-    ```
 
 * Avoid using $1-9 as it can be hard to track what they contain. Named groups
   can be used instead.
@@ -1106,8 +1054,6 @@ Apply this rule only to arrays with two or more elements.
       end
     }x
     ```
-
-* For complex replacements `sub`/`gsub` can be used with block or hash.
 
 ## Percent Literals
 
