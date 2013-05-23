@@ -203,20 +203,6 @@ And indent 2 spaces on the second line
 
 ## Syntax
 
-* Use `::` only to reference constants(this includes classes and
-modules). Never use `::` for method invocation.
-
-    ```Ruby
-    # bad
-    SomeClass::some_method
-    some_object::some_method
-
-    # good
-    SomeClass.some_method
-    some_object.some_method
-    SomeModule::SomeClass::SOME_CONST
-    ```
-
 * Use `def` with parentheses when there are arguments. Omit the
   parentheses when the method doesn't accept any arguments.
 
@@ -262,17 +248,6 @@ modules). Never use `::` for method invocation.
     end
     ```
 
-* Favor the ternary operator(`?:`) over `if/then/else/end` constructs.
-  It's more common and obviously more concise.
-
-    ```Ruby
-    # bad
-    result = if some_condition then something else something_else end
-
-    # good
-    result = some_condition ? something : something_else
-    ```
-
 * Use one expression per branch in a ternary operator. This
   also means that ternary operators must not be nested. Prefer
   `if/else` constructs in these cases.
@@ -288,24 +263,6 @@ modules). Never use `::` for method invocation.
       something_else
     end
     ```
-
-* Never use `if x: ...` - as of Ruby 1.9 it has been removed. Use
-  the ternary operator instead.
-
-    ```Ruby
-    # bad
-    result = if some_condition: something else something_else end
-
-    # good
-    result = some_condition ? something : something_else
-    ```
-
-* Never use `if x; ...`. Use the ternary operator instead.
-
-* Use `when x then ...` for one-line cases. The alternative syntax
-  `when x: ...` has been removed as of Ruby 1.9.
-
-* Never use `when x; ...`. See the previous rule.
 
 * Use `!` instead of `not`.
 
@@ -340,8 +297,6 @@ modules). Never use `::` for method invocation.
     document.saved? || document.save!
     ```
 
-* Avoid multi-line `?:` (the ternary operator); use `if/unless` instead.
-
 * Favor modifier `if/unless` usage when you have a single-line
   body. Another good alternative is the usage of control flow `&&/||`.
 
@@ -356,20 +311,6 @@ modules). Never use `::` for method invocation.
 
     # another good option
     some_condition && do_something
-    ```
-
-* Favor `unless` over `if` for negative conditions (or control
-  flow `||`).
-
-    ```Ruby
-    # bad
-    do_something if !some_condition
-
-    # good
-    do_something unless some_condition
-
-    # another good option
-    some_condition || do_something
     ```
 
 * Never use `unless` with `else`. Rewrite these with the positive case first.
@@ -410,46 +351,6 @@ modules). Never use `::` for method invocation.
       # body omitted
     end
     ```
-
-* Favor modifier `while/until` usage when you have a single-line
-  body.
-
-    ```Ruby
-    # bad
-    while some_condition
-      do_something
-    end
-
-    # good
-    do_something while some_condition
-    ```
-
-* Favor `until` over `while` for negative conditions.
-
-    ```Ruby
-    # bad
-    do_something while !some_condition
-
-    # good
-    do_something until some_condition
-    ```
-
-* Use Kernel#loop with break rather than `begin/end/until` or `begin/end/while` for post-loop tests.
-
-   ```Ruby
-   # bad
-   begin
-     puts val
-     val += 1
-   end while val < 0
-
-   # good
-   loop do
-     puts val
-     val += 1
-     break unless val < 0
-   end
-   ```
 
 * Omit parentheses around parameters for methods that are part of an
   internal DSL (e.g. Rake, Rails, RSpec), methods that have
@@ -610,10 +511,6 @@ would happen if the current value happened to be `false`.)
     enabled = true if enabled.nil?
     ```
 
-* Avoid using Perl-style special variables (like `$0-9`, `$`,
-  etc. ). They are quite cryptic and their use in anything but
-  one-liner scripts is discouraged.
-
 * Never put a space between a method name and the opening parenthesis.
 
     ```Ruby
@@ -627,9 +524,6 @@ would happen if the current value happened to be `false`.)
 * If the first argument to a method begins with an open parenthesis,
   always use parentheses in the method invocation. For example, write
 `f((3 + 2) + 1)`.
-
-* Always run the Ruby interpreter with the `-w` option so it will warn
-you if you forget either of the rules above!
 
 * Use the new lambda literal syntax.
 
@@ -657,51 +551,6 @@ you if you forget either of the rules above!
   `STDOUT/STDERR/STDIN`. `STDOUT/STDERR/STDIN` are constants, and
   while you can actually reassign (possibly to redirect some stream)
   constants in Ruby, you'll get an interpreter warning if you do so.
-
-* Use `warn` instead of `$stderr.puts`. Apart from being more concise
-and clear, `warn` allows you to suppress warnings if you need to (by
-setting the warn level to 0 via `-W0`).
-
-* Favor the use of `sprintf` over the fairly cryptic `String#%` method.
-
-    ```Ruby
-    # bad
-    '%d %d' % [20, 10]
-    # => '20 10'
-
-    # good
-    sprintf('%d %d', 20, 10)
-    # => '20 10'
-    ```
-
-* Favor the use of `Array#join` over the fairly cryptic `Array#*` with
-  a string argument.
-
-    ```Ruby
-    # bad
-    %w(one two three) * ', '
-    # => 'one, two, three'
-
-    # good
-    %w(one two three).join(', ')
-    # => 'one, two, three'
-    ```
-
-* Use `[*var]` or `Array()` instead of explicit `Array` check, when dealing with a
-  variable you want to treat as an Array, but you're not certain it's
-  an array.
-
-    ```Ruby
-    # bad
-    paths = [paths] unless paths.is_a? Array
-    paths.each { |path| do_something(path) }
-
-    # good
-    [*paths].each { |path| do_something(path) }
-
-    # good (and a bit more readable)
-    Array(paths).each { |path| do_something(path) }
-    ```
 
 * Use ranges instead of complex comparison logic when possible.
 
