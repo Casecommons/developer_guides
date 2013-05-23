@@ -943,25 +943,6 @@ Apply this rule only to arrays with two or more elements.
     STATES = %w(draft open closed)
     ```
 
-* Prefer `%i` to the literal array syntax when you need an array of
-symbols(and you don't need to maintain Ruby 1.9 compatibility). Apply
-this rule only to arrays with two or more elements.
-
-    ```Ruby
-    # bad
-    STATES = [:draft, :open, :closed]
-
-    # good
-    STATES = %i(draft open closed)
-    ```
-
-* Avoid the creation of huge gaps in arrays.
-
-    ```Ruby
-    arr = []
-    arr[100] = 1 # now you have an array with lots of nils
-    ```
-
 * Use `Set` instead of `Array` when dealing with unique elements. `Set`
   implements a collection of unordered values with no duplicates. This
   is a hybrid of `Array`'s intuitive inter-operation facilities and
@@ -986,32 +967,6 @@ this rule only to arrays with two or more elements.
     # good
     hash = { one: 1, two: 2, three: 3 }
     ```
-
-* Use `fetch` when dealing with hash keys that should be present.
-
-    ```Ruby
-    heroes = { batman: 'Bruce Wayne', superman: 'Clark Kent' }
-    # bad - if we make a mistake we might not spot it right away
-    heroes[:batman] # => "Bruce Wayne"
-    heroes[:supermann] # => nil
-
-    # good - fetch raises a KeyError making the problem obvious
-    heroes.fetch(:supermann)
-    ```
-* Use `fetch` with second argument to use a default value
-
-   ```Ruby
-   batman = { name: 'Bruce Wayne', is_evil: false }
-
-   # bad - if we just use || operator with falsy value we won't get the expected result
-   batman[:is_evil] || true # => true
-
-   # good - fetch work correctly with falsy values
-   batman.fetch(:is_evil, true) # => false
-   ```
-
-* Rely on the fact that as of Ruby 1.9 hashes are ordered.
-* Never modify a collection while traversing it.
 
 ## Strings
 
