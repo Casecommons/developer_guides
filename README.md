@@ -332,9 +332,7 @@ And indent 2 spaces on the second line
     end
     ```
 
-* Don't use parentheses around the condition of an `if/unless/while`,
-  unless the condition contains an assignment (see "Using the return
-  value of `=`" below).
+* Don't use parentheses around the condition of an `if/unless/while`.
 
     ```Ruby
     # bad
@@ -344,11 +342,6 @@ And indent 2 spaces on the second line
 
     # good
     if x > 10
-      # body omitted
-    end
-
-    # ok
-    if (x = self.next_value)
       # body omitted
     end
     ```
