@@ -18,7 +18,6 @@ standup or via group email, get consensus from the team and then add it to this 
 * [Comments](#comments)
     * [Comment Annotations](#comment-annotations)
 * [Classes](#classes)
-* [Methods](#methods)
 * [Exceptions](#exceptions)
 * [Collections](#collections)
 * [Strings](#strings)
@@ -371,11 +370,8 @@ And indent 2 spaces on the second line
     bowling.score.should == 0
     ```
 
-* Prefer `{...}` over `do...end` for single-line blocks.  Avoid using
-  `{...}` for multi-line blocks (multiline chaining is always
-  ugly). Always use `do...end` for "control flow" and "method
-  definitions" (e.g. in Rakefiles and certain DSLs).  Avoid `do...end`
-  when chaining.
+* Use `{...}` over `do...end` for single-line blocks.  Avoid using
+  `{...}` for multi-line blocks. Avoid chaning multiple blocks.
 
     ```Ruby
     names = ['Bozhidar', 'Steve', 'Sarah']
@@ -393,8 +389,12 @@ And indent 2 spaces on the second line
       name.start_with?('S')
     end.map { |name| name.upcase }
 
-    # good
+    # bad
     names.select { |name| name.start_with?('S') }.map { |name| name.upcase }
+
+    # good
+    selection = names.select { |name| name.start_with?('S') }
+    selection.map { |name| name.upcase }
     ```
 
     Some will argue that multiline chaining would look OK with the use of {...}, but they should
