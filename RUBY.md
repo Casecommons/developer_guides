@@ -145,9 +145,14 @@ standup or via group email, get consensus from the team and then add it to this 
     in practice (and arguably a bit more readable).
 
 * When continuing a chained method invocation on another line keep the `.` on the second line.
-And indent 2 spaces on the second line
+And indent 2 spaces on the second line. Also the first method call should be on the first line.
 
     ```Ruby
+    # bad - first method call should be on the first line
+    one
+      .two
+      .three
+
     # bad - need to consult first line to understand second line
     one.two.three.
       four
