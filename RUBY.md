@@ -920,6 +920,7 @@ pass parameters to their constructors, that is).
 * Prefer `%w` to the literal array syntax when you need an array of
 words(non-empty strings without spaces and special characters in them).
 Apply this rule only to arrays with two or more elements.
+If there are spaces and special characters then don't use `%w`.
 
     ```Ruby
     # bad
@@ -927,6 +928,12 @@ Apply this rule only to arrays with two or more elements.
 
     # good
     STATES = %w(draft open closed)
+
+    # bad
+    STATES = %w(new\nyork, maine, new\njersey)
+
+    # good
+    STATES = ['new york', 'maine', 'new jersey']
     ```
 
 * Use `Set` instead of `Array` when dealing with unique elements. `Set`
