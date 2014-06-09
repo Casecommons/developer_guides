@@ -170,15 +170,6 @@ And indent 2 spaces on the second line. Also the first method call should be on 
       Mailer.deliver(to: 'bob@example.com', from: 'us@example.com', subject: 'Important message', body: source.text)
     end
 
-    # bad (normal indent)
-    def send_mail(source)
-      Mailer.deliver(
-        to: 'bob@example.com',
-        from: 'us@example.com',
-        subject: 'Important message',
-        body: source.text)
-    end
-
     # bad (double indent)
     def send_mail(source)
       Mailer.deliver(
@@ -188,12 +179,22 @@ And indent 2 spaces on the second line. Also the first method call should be on 
           body: source.text)
     end
 
-    # good
+    # bad
     def send_mail(source)
       Mailer.deliver(to: 'bob@example.com',
                      from: 'us@example.com',
                      subject: 'Important message',
                      body: source.text)
+    end
+
+    # good (normal indent)
+    def send_mail(source)
+      Mailer.deliver(
+        to: 'bob@example.com',
+        from: 'us@example.com',
+        subject: 'Important message',
+        body: source.text
+      )
     end
     ```
 
