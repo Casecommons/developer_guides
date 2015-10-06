@@ -552,6 +552,7 @@ would happen if the current value happened to be `false`.)
   `STDOUT/STDERR/STDIN`. `STDOUT/STDERR/STDIN` are constants, and
   while you can actually reassign (possibly to redirect some stream)
   constants in Ruby, you'll get an interpreter warning if you do so.
+e.g., https://github.com/Casecommons/casebook2/blob/master/bin/rspork#L32
 
 * Use ranges instead of complex comparison logic when possible.
 
@@ -562,6 +563,7 @@ would happen if the current value happened to be `false`.)
     # good
     do_something if (1000...2000).include?(x)
     ```
+* Use `#cover?` for other (all?) ranges, like dates. `#include?` would coerce a date range to a (huge?) array of the dates covered by the range.
 
 ## Naming
 
