@@ -42,6 +42,16 @@ standup or via group email, get consensus from the team and then add it to this 
     [1, 2, 3].each { |e| puts e }
     ```
 
+    The only exception, regarding curly braces, is string interpolation:
+
+    ```Ruby
+    # bad
+    "User name is #{ name }"
+
+    # good
+    "User name is #{name}"
+    ```
+
     The only exception, regarding operators, is the exponent operator:
 
     ```Ruby
