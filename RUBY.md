@@ -839,6 +839,7 @@ everything `public` (which is the default).
       n / d
     end
     ```
+(Note that DataBroker and some of the REST APIs do use exceptions for control flow, to return errors to the callers. Do not emulate this pattern without VERY good reason!)
 
 * Avoid rescuing the `Exception` class.  This will trap signals and calls to
   `exit`, requiring you to `kill -9` the process.
@@ -914,6 +915,8 @@ everything `public` (which is the default).
 
 * Favor the use of exceptions for the standard library over
 introducing new exception classes.
+(Some of the REST APIs do have their own custom exception classes so they know what to send back. They then handle those, respond intelligently, and let standard exceptions flow through to standard error-handling protocols. 
+Again, do not emulate this pattern without VERY good reason!)
 
 ## Collections
 
